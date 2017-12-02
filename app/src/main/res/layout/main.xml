@@ -79,7 +79,7 @@
             android:id="@+id/Menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Menu" />
+            android:text="High Scores" />
 
     </TableRow>
 

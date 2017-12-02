@@ -47,7 +47,7 @@ public class Manager extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-		startService(new Intent(Manager.this, MusicService.class));
+//		startService(new Intent(Manager.this, MusicService.class));
 
 		setContentView(R.layout.main);
 

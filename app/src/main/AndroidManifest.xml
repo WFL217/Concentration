@@ -19,6 +19,10 @@
         <activity
             android:name=".HSActivity"
             android:label="@string/title_activity_hs"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".gameActivity"
+            android:label="@string/title_activity_game"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

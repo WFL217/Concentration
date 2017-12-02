@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -72,7 +73,8 @@ public class Manager extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				newGame(4,4);
+				Intent i = new Intent(Manager.this, HSActivity.class);
+				startActivity(i);
 
 			}
 
@@ -148,7 +150,6 @@ public class Manager extends Activity {
     	
     	
     	mainTable.removeView(findViewById(R.id.TableRow01));
-		mainTable.removeView(findViewById(R.id.TableRow03));
 		mainTable.removeView(findViewById(R.id.TableRow02));
 
     	

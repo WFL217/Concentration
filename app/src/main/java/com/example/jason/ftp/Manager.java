@@ -22,6 +22,7 @@ public class Manager extends Activity
 	private List<Drawable> images;
 	private Card firstCard;
 	private Card seconedCard;
+	private Music backgroundMusic;
 	
 	private static Object lock = new Object();
 	
@@ -32,8 +33,7 @@ public class Manager extends Activity
     public void onCreate(Bundle savedInstanceState)
 	{
         super.onCreate(savedInstanceState);
-        Intent startMusic = new Intent(this, MusicService.class);
-		startService(startMusic);
+        backgroundMusic = Music.get(this);
 
 		setContentView(R.layout.main);
 

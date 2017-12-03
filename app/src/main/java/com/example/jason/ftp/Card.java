@@ -2,8 +2,10 @@ package com.example.jason.ftp;
 
 import android.widget.Button;
 
+import java.io.Serializable;
 
-public class Card{
+
+public class Card implements Serializable{
 
 	public int x;
 	public int y;

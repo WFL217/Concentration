@@ -3,7 +3,6 @@ package com.example.jason.ftp;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -48,33 +47,23 @@ public class gameActivity extends AppCompatActivity {
     private UpdateCardsHandler handler;
     private int score;
     private String[] arr;
-    private int xDim;
-    private int yDim;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
+        setContentView(R.layout.game);
         handler = new UpdateCardsHandler();
         loadImages();
         backImage =  getResources().getDrawable(R.drawable.icon);
-        setxDim(2);
-        setyDim(2);
-        newGame(getxDim(),getyDim());
+
+        newGame(4,4);
 
         ((Button)findViewById(R.id.button1)).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                if (seconedCard != null && firstCard != null) {
-                    seconedCard.button.setBackgroundDrawable(backImage);
-                    firstCard.button.setBackgroundDrawable(backImage);
-                    firstCard = null;
-                    seconedCard = null;
-                }
-
+                //Intent i = new Intent(HSActivity.this, Manager.class);
+                //startActivity(i);
 
             }
 
@@ -87,7 +76,7 @@ public class gameActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(gameActivity.this, gameActivity.class);
                 startActivity(i);
-                newGame(getxDim(),getyDim());
+                newGame(4,4);
             }
 
 
@@ -97,7 +86,7 @@ public class gameActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(gameActivity.this, scoreScreenActivity.class);
+                Intent i = new Intent(gameActivity.this, Manager.class);
                 startActivity(i);
 
             }
@@ -143,7 +132,7 @@ public class gameActivity extends AppCompatActivity {
                     selectedText.setTextColor(Color.BLUE);
                 }
 
-                final int x,y;
+                int x,y;
 
                 switch (pos) {
                     case 1:
@@ -167,19 +156,14 @@ public class gameActivity extends AppCompatActivity {
                     default:
                         return;
                 }
-                setxDim(x);
-                setyDim(y);
+
                 newGame(x,y);
                 ((Button)findViewById(R.id.button1)).setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
-                        if (seconedCard != null && firstCard != null) {
-                            seconedCard.button.setBackgroundDrawable(backImage);
-                            firstCard.button.setBackgroundDrawable(backImage);
-                            firstCard = null;
-                            seconedCard = null;
-                        }
+                        //Intent i = new Intent(HSActivity.this, Manager.class);
+                        //startActivity(i);
 
                     }
 
@@ -192,6 +176,7 @@ public class gameActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent i = new Intent(gameActivity.this, gameActivity.class);
                         startActivity(i);
+                        newGame(4,4);
                     }
 
 
@@ -241,22 +226,6 @@ public class gameActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.tv1)).setText("Score: "+score);
 
 
-    }
-
-    private void setxDim(int x){
-        xDim = x;
-    }
-
-    private void setyDim(int y){
-        yDim = y;
-    }
-
-    private int getxDim(){
-        return xDim;
-    }
-
-    private int getyDim(){
-        return yDim;
     }
 
     private void loadImages() {
@@ -412,18 +381,18 @@ public class gameActivity extends AppCompatActivity {
                     score = score + 2;
                     firstCard.button.setVisibility(View.INVISIBLE);
                     seconedCard.button.setVisibility(View.INVISIBLE);
-                    firstCard = null;
-                    seconedCard = null;
 
                 } else {
                     score--;
+                    seconedCard.button.setBackgroundDrawable(backImage);
+                    firstCard.button.setBackgroundDrawable(backImage);
 
                 }
 
-
+                firstCard = null;
+                seconedCard = null;
             }
         }
     }
-
 
 }

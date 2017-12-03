@@ -36,4 +36,4 @@
         <service android:name=".MusicService"/>
     </application>
 
-</manifest> 
+</manifest>

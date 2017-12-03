@@ -2,6 +2,7 @@ package com.example.jason.ftp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -45,6 +46,7 @@ public class gameActivity extends AppCompatActivity {
     private TableLayout mainTable;
     private UpdateCardsHandler handler;
     private int score;
+    private String[] arr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class gameActivity extends AppCompatActivity {
         handler = new UpdateCardsHandler();
         loadImages();
         backImage =  getResources().getDrawable(R.drawable.icon);
+
         newGame(4,4);
 
         ((Button)findViewById(R.id.button1)).setOnClickListener(new View.OnClickListener() {
@@ -124,6 +127,10 @@ public class gameActivity extends AppCompatActivity {
                     View arg1, int pos, long arg3){
 
                 ((Spinner) findViewById(R.id.Spinner01)).setSelection(0);
+                TextView selectedText = (TextView) arg0.getChildAt(0);
+                if (selectedText != null) {
+                    selectedText.setTextColor(Color.BLUE);
+                }
 
                 int x,y;
 
@@ -149,7 +156,43 @@ public class gameActivity extends AppCompatActivity {
                     default:
                         return;
                 }
+
                 newGame(x,y);
+                ((Button)findViewById(R.id.button1)).setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        //Intent i = new Intent(HSActivity.this, Manager.class);
+                        //startActivity(i);
+
+                    }
+
+
+                });
+
+                ((Button)findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(gameActivity.this, gameActivity.class);
+                        startActivity(i);
+                        newGame(4,4);
+                    }
+
+
+                });
+
+                ((Button)findViewById(R.id.button3)).setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(gameActivity.this, Manager.class);
+                        startActivity(i);
+
+                    }
+
+
+                });
 
             }
 
@@ -332,22 +375,23 @@ public class gameActivity extends AppCompatActivity {
                 checkCards();
             }
         }
-        public void checkCards(){
-            if(cards[seconedCard.x][seconedCard.y] == cards[firstCard.x][firstCard.y]){
-                score = score+2;
-                firstCard.button.setVisibility(View.INVISIBLE);
-                seconedCard.button.setVisibility(View.INVISIBLE);
+        public void checkCards() {
+            if (seconedCard != null && firstCard != null) {
+                if (cards[seconedCard.x][seconedCard.y] == cards[firstCard.x][firstCard.y]) {
+                    score = score + 2;
+                    firstCard.button.setVisibility(View.INVISIBLE);
+                    seconedCard.button.setVisibility(View.INVISIBLE);
 
+                } else {
+                    score--;
+                    seconedCard.button.setBackgroundDrawable(backImage);
+                    firstCard.button.setBackgroundDrawable(backImage);
+
+                }
+
+                firstCard = null;
+                seconedCard = null;
             }
-            else {
-                score--;
-                seconedCard.button.setBackgroundDrawable(backImage);
-                firstCard.button.setBackgroundDrawable(backImage);
-
-            }
-
-            firstCard=null;
-            seconedCard=null;
         }
     }
 

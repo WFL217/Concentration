@@ -51,9 +51,6 @@ public class Manager extends Activity {
 
 		setContentView(R.layout.main);
 
-        
-
-       
 
        ((Button)findViewById(R.id.Play)).setOnClickListener(new OnClickListener() {
 		

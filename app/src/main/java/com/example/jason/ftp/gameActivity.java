@@ -93,6 +93,25 @@ public class gameActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState)
+    {
+        savedInstanceState.putInt("score", score);
+        Log.d("The score is ", "" + score);
+        Log.i("THE INSTANCE ", "HAS BEEN SAVED");
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState)
+    {
+        super.onRestoreInstanceState(savedInstanceState);
+        score = savedInstanceState.getInt("score");
+        Log.d("The score is ", "" + score);
+        Log.i("THE INSTANCE ", "HAS BEEN LOADED");
+        ((TextView)findViewById(R.id.tv1)).setText("Score: "+ score);
+    }
+
     public void newGame(int c, int r) {
 
 
@@ -149,7 +168,44 @@ public class gameActivity extends AppCompatActivity {
                     default:
                         return;
                 }
+                score = 0;
                 newGame(x,y);
+
+                ((Button)findViewById(R.id.button1)).setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        //Intent i = new Intent(HSActivity.this, Manager.class);
+                        //startActivity(i);
+
+                    }
+
+
+                });
+
+                ((Button)findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(gameActivity.this, gameActivity.class);
+                        startActivity(i);
+                        newGame(4,4);
+                    }
+
+
+                });
+
+                ((Button)findViewById(R.id.button3)).setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(gameActivity.this, Manager.class);
+                        startActivity(i);
+
+                    }
+
+
+                });
 
             }
 
@@ -296,8 +352,8 @@ public class gameActivity extends AppCompatActivity {
 
                 seconedCard = new Card(button,x,y);
 
-                turns++;
-                ((TextView)findViewById(R.id.tv1)).setText("Score: "+score);
+                //turns++;
+                //((TextView)findViewById(R.id.tv1)).setText("Score: "+score);
 
 
                 TimerTask tt = new TimerTask() {
@@ -335,15 +391,18 @@ public class gameActivity extends AppCompatActivity {
         public void checkCards(){
             if(cards[seconedCard.x][seconedCard.y] == cards[firstCard.x][firstCard.y]){
                 score = score+2;
+                ((TextView)findViewById(R.id.tv1)).setText("Score: "+score);
                 firstCard.button.setVisibility(View.INVISIBLE);
                 seconedCard.button.setVisibility(View.INVISIBLE);
-
             }
             else {
-                score--;
+                if(score != 0)
+                {
+                    score--;
+                    ((TextView)findViewById(R.id.tv1)).setText("Score: "+score);
+                }
                 seconedCard.button.setBackgroundDrawable(backImage);
                 firstCard.button.setBackgroundDrawable(backImage);
-
             }
 
             firstCard=null;

@@ -1,6 +1,7 @@
 package com.example.jason.ftp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -53,6 +54,42 @@ public class gameActivity extends AppCompatActivity {
         backImage =  getResources().getDrawable(R.drawable.icon);
         newGame(4,4);
 
+        ((Button)findViewById(R.id.button1)).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //Intent i = new Intent(HSActivity.this, Manager.class);
+                //startActivity(i);
+
+            }
+
+
+        });
+
+        ((Button)findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(gameActivity.this, gameActivity.class);
+                startActivity(i);
+                newGame(4,4);
+            }
+
+
+        });
+
+        ((Button)findViewById(R.id.button3)).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(gameActivity.this, Manager.class);
+                startActivity(i);
+
+            }
+
+
+        });
+
     }
 
     public void newGame(int c, int r) {
@@ -98,10 +135,13 @@ public class gameActivity extends AppCompatActivity {
                         x=2;y=4;
                         break;
                     case 4:
-                        x=2;y=5;
+                        x=5;y=2;
                         break;
                     case 5:
-                        x=4;y=5;
+                        x=3;y=4;
+                        break;
+                    case 6:
+                        x=7;y=2;
                         break;
                     default:
                         return;
@@ -121,10 +161,7 @@ public class gameActivity extends AppCompatActivity {
 
         cards = new int [COL_COUNT] [ROW_COUNT];
 
-
-    	mainTable.removeView(findViewById(R.id.TableRow01));
-		mainTable.removeView(findViewById(R.id.TableRow02));
-
+        
 
         TableRow tr = ((TableRow)findViewById(R.id.TableRow03));
     	tr.removeAllViews();

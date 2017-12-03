@@ -93,6 +93,8 @@ public class gameActivity extends AppCompatActivity {
     }
 
     public void newGame(int c, int r) {
+
+
         ROW_COUNT = r;
         COL_COUNT = c;
 
@@ -161,7 +163,7 @@ public class gameActivity extends AppCompatActivity {
 
         cards = new int [COL_COUNT] [ROW_COUNT];
 
-        
+
 
         TableRow tr = ((TableRow)findViewById(R.id.TableRow03));
     	tr.removeAllViews();

@@ -44,6 +44,7 @@ public class gameActivity extends AppCompatActivity {
     int turns;
     private TableLayout mainTable;
     private UpdateCardsHandler handler;
+    private int score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -179,7 +180,7 @@ public class gameActivity extends AppCompatActivity {
         loadCards();
 
         turns=0;
-        ((TextView)findViewById(R.id.tv1)).setText("Tries: "+turns);
+        ((TextView)findViewById(R.id.tv1)).setText("Score: "+score);
 
 
     }
@@ -296,7 +297,7 @@ public class gameActivity extends AppCompatActivity {
                 seconedCard = new Card(button,x,y);
 
                 turns++;
-                ((TextView)findViewById(R.id.tv1)).setText("Tries: "+turns);
+                ((TextView)findViewById(R.id.tv1)).setText("Score: "+score);
 
 
                 TimerTask tt = new TimerTask() {
@@ -315,7 +316,7 @@ public class gameActivity extends AppCompatActivity {
                 };
 
                 Timer t = new Timer(false);
-                t.schedule(tt, 1300);
+                t.schedule(tt, 500);
             }
 
 
@@ -333,12 +334,16 @@ public class gameActivity extends AppCompatActivity {
         }
         public void checkCards(){
             if(cards[seconedCard.x][seconedCard.y] == cards[firstCard.x][firstCard.y]){
+                score = score+2;
                 firstCard.button.setVisibility(View.INVISIBLE);
                 seconedCard.button.setVisibility(View.INVISIBLE);
+
             }
             else {
+                score--;
                 seconedCard.button.setBackgroundDrawable(backImage);
                 firstCard.button.setBackgroundDrawable(backImage);
+
             }
 
             firstCard=null;

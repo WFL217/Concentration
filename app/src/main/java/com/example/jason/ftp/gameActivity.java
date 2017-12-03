@@ -93,6 +93,7 @@ public class gameActivity extends AppCompatActivity {
 
     }
 
+
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState)
     {
@@ -111,6 +112,7 @@ public class gameActivity extends AppCompatActivity {
         Log.i("THE INSTANCE ", "HAS BEEN LOADED");
         ((TextView)findViewById(R.id.tv1)).setText("Score: "+ score);
     }
+
 
     public void newGame(int c, int r) {
 
@@ -168,6 +170,7 @@ public class gameActivity extends AppCompatActivity {
                     default:
                         return;
                 }
+
                 score = 0;
                 newGame(x,y);
 
@@ -206,6 +209,10 @@ public class gameActivity extends AppCompatActivity {
 
 
                 });
+
+
+                newGame(x,y);
+
 
             }
 
@@ -352,8 +359,13 @@ public class gameActivity extends AppCompatActivity {
 
                 seconedCard = new Card(button,x,y);
 
+
                 //turns++;
                 //((TextView)findViewById(R.id.tv1)).setText("Score: "+score);
+
+                turns++;
+                ((TextView)findViewById(R.id.tv1)).setText("Score: "+score);
+
 
 
                 TimerTask tt = new TimerTask() {
@@ -391,6 +403,7 @@ public class gameActivity extends AppCompatActivity {
         public void checkCards(){
             if(cards[seconedCard.x][seconedCard.y] == cards[firstCard.x][firstCard.y]){
                 score = score+2;
+
                 ((TextView)findViewById(R.id.tv1)).setText("Score: "+score);
                 firstCard.button.setVisibility(View.INVISIBLE);
                 seconedCard.button.setVisibility(View.INVISIBLE);
@@ -403,6 +416,17 @@ public class gameActivity extends AppCompatActivity {
                 }
                 seconedCard.button.setBackgroundDrawable(backImage);
                 firstCard.button.setBackgroundDrawable(backImage);
+
+                firstCard.button.setVisibility(View.INVISIBLE);
+                seconedCard.button.setVisibility(View.INVISIBLE);
+
+            }
+            else {
+                score--;
+                seconedCard.button.setBackgroundDrawable(backImage);
+                firstCard.button.setBackgroundDrawable(backImage);
+
+
             }
 
             firstCard=null;

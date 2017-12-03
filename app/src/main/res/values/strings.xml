@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Memory Game</string>
+
+    <string-array name="type">
+        <item>2 x 2</item>
+        <item>2 X 3</item>
+        <item>2 X 4</item>
+        <item>5 X 2</item>
+        <item>3 X 4</item>
+        <item>7 X 2</item>
+    </string-array>
+    <string name="title_activity_manager">ManagerActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_hs">HSActivity</string>
+    <string name="title_activity_game">gameActivity</string>
+
+</resources>

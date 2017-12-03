@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -46,11 +47,9 @@ public class Manager extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
+//		startService(new Intent(Manager.this, MusicService.class));
 
 		setContentView(R.layout.main);
-
 
        ((Button)findViewById(R.id.Play)).setOnClickListener(new OnClickListener() {
 		
@@ -80,10 +79,5 @@ public class Manager extends Activity {
 
 
     }
-    
 
-    
-   
-    
-    
 }

@@ -1,34 +1,39 @@
 package com.example.jason.ftp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.media.MediaPlayer;
 
-public class Music extends Activity
-{
-    private static Music sMusic;
-    private MediaPlayer player;
-
-    public static Music get(Context context)
-    {
-        if (sMusic == null)
-        {
-            sMusic = new Music(context);
-        }
-        return sMusic;
-    }
-
-    @Override
-    public void onPause()
-    {
-        super.onPause();
-        player.pause();
-    }
-
-    private Music(Context context)
-    {
-        player = MediaPlayer.create(context, R.raw.background);
-        player.setLooping(true);
-        player.start();
-    }
+public class Music {
+	private static MediaPlayer mp= null;
+	
+	/** Stop old song and start playing new one */
+	public static void create(Context context, int resource)
+	{
+		//stop(context);
+		mp = MediaPlayer.create(context, resource);
+		//mp.setLooping(true);
+		//mp.start();
+	}
+	public static void setLooping(Context context, int resource)
+	{
+		mp.setLooping(true);
+	}
+	public static void stop(Context context)
+	{
+		if(mp != null)
+		{
+			mp.stop();
+			mp.release();
+			mp = null;
+		}
+	}
+	public static void pause(Context context)
+	{
+		mp.pause();
+	}
+	public static void start(Context context)
+	{
+		mp.start();
+	}
+	
 }

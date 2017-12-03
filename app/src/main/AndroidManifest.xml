@@ -23,6 +23,11 @@
         <activity
             android:name=".gameActivity"
             android:label="@string/title_activity_game"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>

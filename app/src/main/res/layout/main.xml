@@ -2,6 +2,7 @@
 
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tl03"
+    android:background="@drawable/bg"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
@@ -38,13 +39,15 @@
             android:id="@+id/mainTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
             android:gravity="center"
             android:paddingTop="20sp"
             android:text="Concentration"
             android:textAlignment="center"
             android:textColor="@android:color/background_dark"
-            android:textSize="30sp"
+            android:textSize="36sp"
             android:textStyle="bold"
+            android:typeface="normal"
             android:visibility="visible"></TextView>
 
     </TableRow>

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/TableLayout03"
+    android:background="@drawable/bg"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
@@ -23,12 +26,12 @@
     <TableRow
         android:id="@+id/TableRow05"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="108dp">
 
         <TextView
             android:id="@+id/tv1"
             android:layout_width="wrap_content"
-            android:layout_height="221dp"
+            android:layout_height="55dp"
             android:layout_weight="1"
             android:paddingLeft="10sp"></TextView>
     </TableRow>
@@ -40,19 +43,6 @@
         android:layout_gravity="center"
         android:gravity="center">
 
-        <TextView
-            android:id="@+id/mainTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingTop="20sp"
-            android:text="Concentration"
-            android:textAlignment="center"
-            android:textColor="@android:color/background_dark"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:visibility="visible"></TextView>
-
     </TableRow>
 
     <TableRow
@@ -61,26 +51,67 @@
         android:layout_height="wrap_content"
         android:gravity="center">
 
-        <Button
-            android:id="@+id/Play"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Play" />
-
     </TableRow>
 
     <TableRow
         android:id="@+id/TableRow02"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="53dp"
         android:gravity="center">
 
-        <Button
-            android:id="@+id/Menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="High Scores" />
+    </TableRow>
 
+    <TableRow
+        android:id="@+id/fill1"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+        <TextView
+            android:id="@+id/fillt"
+            android:layout_width="wrap_content"
+            android:layout_height="213dp"
+            android:layout_weight="1"
+            android:paddingLeft="10sp"></TextView>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/Buttonrow1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:text="Try Again" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/Buttonrow2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:text="New Game"
+            tools:text="End Game" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/Buttonrow3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:text="End Game" />
     </TableRow>
 
 

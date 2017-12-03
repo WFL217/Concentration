@@ -1,5 +1,6 @@
 package com.example.jason.ftp;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -47,7 +48,7 @@ public class Manager extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//		startService(new Intent(Manager.this, MusicService.class));
+		startService(new Intent(this, MusicService.class));
 
 		setContentView(R.layout.main);
 
@@ -79,5 +80,12 @@ public class Manager extends Activity {
 
 
     }
+
+    @Override
+	protected void onPause()
+	{
+		super.onPause();
+	}
+
 
 }

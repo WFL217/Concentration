@@ -98,6 +98,7 @@ public class gameActivity extends AppCompatActivity
                 newGame(4, 5);
                 break;
             default:
+                break;
         }
 
         ((Button) findViewById(R.id.button1)).setOnClickListener(new View.OnClickListener()

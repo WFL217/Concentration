@@ -28,8 +28,8 @@ import java.util.TimerTask;
 public class gameActivity extends AppCompatActivity
 {
 
-    private static int ROW_COUNT = -1;
-    private static int COL_COUNT = -1;
+    private int ROW_COUNT;
+    private int COL_COUNT;
     private Context context;
     private Drawable backImage;
     private int[][] cards;
@@ -43,7 +43,7 @@ public class gameActivity extends AppCompatActivity
 
     private static Object lock = new Object();
 
-    int turns;
+    private int numWords;
     private TableLayout mainTable;
     private UpdateCardsHandler handler;
     private int score;
@@ -53,10 +53,45 @@ public class gameActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
+
+        //Log.i("NUMWORDS IS ", String.valueOf(getIntent().getIntExtra("numwords", 0)));
+        numWords = getIntent().getIntExtra("numWords", 10);
+
         handler = new UpdateCardsHandler();
         loadImages();
         backImage = getResources().getDrawable(R.drawable.icon);
-        newGame(4, 4);
+
+        switch(numWords)
+        {
+            case 2:
+                newGame(2, 2);
+                break;
+            case 3:
+                newGame(2, 3);
+                break;
+            case 4:
+                newGame(2, 4);
+                break;
+            case 5:
+                newGame(2, 5);
+                break;
+            case 6:
+                newGame(3, 4);
+                break;
+            case 7:
+                newGame(2, 7);
+                break;
+            case 8:
+                newGame(4, 4);
+                break;
+            case 9:
+                newGame(3, 6);
+                break;
+            case 10:
+                newGame(4, 5);
+                break;
+            default:
+        }
 
         ((Button) findViewById(R.id.button1)).setOnClickListener(new View.OnClickListener()
         {
@@ -79,8 +114,8 @@ public class gameActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent i = new Intent(gameActivity.this, gameActivity.class);
+                i.putExtra("numWords", numWords);
                 startActivity(i);
-                newGame(4, 4);
             }
 
 
@@ -193,123 +228,10 @@ public class gameActivity extends AppCompatActivity
 
         context = mainTable.getContext();
 
-
-        Spinner s = (Spinner) findViewById(R.id.Spinner01);
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(
-                this, R.array.type, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s.setAdapter(adapter);
-        s.setVisibility(View.VISIBLE);
-
-
-        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-
-            @Override
-            public void onItemSelected(
-                    android.widget.AdapterView<?> arg0,
-                    View arg1, int pos, long arg3)
-            {
-
-                ((Spinner) findViewById(R.id.Spinner01)).setSelection(0);
-
-                int x, y;
-
-                switch (pos)
-                {
-                    case 1:
-                        x = 2;
-                        y = 2;
-                        break;
-                    case 2:
-                        x = 2;
-                        y = 3;
-                        break;
-                    case 3:
-                        x = 2;
-                        y = 4;
-                        break;
-                    case 4:
-                        x = 5;
-                        y = 2;
-                        break;
-                    case 5:
-                        x = 3;
-                        y = 4;
-                        break;
-                    case 6:
-                        x = 7;
-                        y = 2;
-                        break;
-                    default:
-                        return;
-                }
-
-                score = 0;
-                newGame(x, y);
-
-                ((Button) findViewById(R.id.button1)).setOnClickListener(new View.OnClickListener()
-                {
-
-                    @Override
-                    public void onClick(View v)
-                    {
-                        //Intent i = new Intent(HSActivity.this, Manager.class);
-                        //startActivity(i);
-
-                    }
-
-
-                });
-
-                ((Button) findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener()
-                {
-
-                    @Override
-                    public void onClick(View v)
-                    {
-                        Intent i = new Intent(gameActivity.this, gameActivity.class);
-                        startActivity(i);
-                        newGame(4, 4);
-                    }
-
-
-                });
-
-                ((Button) findViewById(R.id.button3)).setOnClickListener(new View.OnClickListener()
-                {
-
-                    @Override
-                    public void onClick(View v)
-                    {
-                        Intent i = new Intent(gameActivity.this, Manager.class);
-                        startActivity(i);
-
-                    }
-
-
-                });
-
-
-                //newGame(x,y);
-
-
-            }
-
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0)
-            {
-                // TODO Auto-generated method stub
-
-            }
-
-        });
-
         cards = new int[COL_COUNT][ROW_COUNT];
         revealedCards = new boolean[COL_COUNT][ROW_COUNT];
         buttons = new View[COL_COUNT][ROW_COUNT];
-        buttonRows = new TableRow[ROW_COUNT];
+        buttonRows = new TableRow[COL_COUNT];
 
         TableRow tr = ((TableRow) findViewById(R.id.TableRow03));
         tr.removeAllViews();
@@ -339,8 +261,7 @@ public class gameActivity extends AppCompatActivity
 
         firstCard = null;
         loadCards();
-
-        turns = 0;
+        
         ((TextView) findViewById(R.id.tv1)).setText("Score: " + score);
 
 

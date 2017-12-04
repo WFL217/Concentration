@@ -2,6 +2,7 @@ package com.example.jason.ftp;
 
 import java.util.List;
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -38,12 +39,14 @@ public class Manager extends Activity
 		setContentView(R.layout.main);
 
        ((Button)findViewById(R.id.Play)).setOnClickListener(new OnClickListener() {
-		
-		@Override
-		public void onClick(View v) {
-			Intent i = new Intent(Manager.this, gameActivity.class);
-			startActivity(i);
-		}
+
+		   @Override
+		   public void onClick(View view)
+		   {
+			   DialogFragment dialog = new PlayDialogFragment();
+
+			   dialog.show(getFragmentManager(), "play");
+		   }
 	});
 		((Button)findViewById(R.id.Menu)).setOnClickListener(new OnClickListener() {
 

@@ -7,6 +7,7 @@
     android:layout_height="fill_parent">
 
 
+
     <TableRow
         android:id="@+id/tr04"
         android:layout_width="wrap_content"
@@ -79,6 +80,8 @@
             android:text="High Scores" />
 
     </TableRow>
+
+
 
 
 </TableLayout>

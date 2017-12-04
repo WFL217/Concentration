@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Memory Game</string>
 
-    <string-array name="type" id = "stuff">
+    <string-array name="type" id="stuff">
         <item>Choose Dimensions</item>
         <item>2 X 2</item>
         <item>2 X 3</item>
@@ -14,5 +14,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_hs">HSActivity</string>
     <string name="title_activity_game">gameActivity</string>
+    <string name="title_activity_score_screen">scoreScreenActivity</string>
 
 </resources>

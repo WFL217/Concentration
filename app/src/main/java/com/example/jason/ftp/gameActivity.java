@@ -410,8 +410,8 @@ public class gameActivity extends AppCompatActivity {
             if (seconedCard != null && firstCard != null) {
                 if (cards[seconedCard.x][seconedCard.y] == cards[firstCard.x][firstCard.y]) {
                     score = score + 2;
-                    firstCard.button.setVisibility(View.INVISIBLE);
-                    seconedCard.button.setVisibility(View.INVISIBLE);
+                    //firstCard.button.setVisibility(View.INVISIBLE);
+                    //seconedCard.button.setVisibility(View.INVISIBLE);
                     firstCard = null;
                     seconedCard = null;
 

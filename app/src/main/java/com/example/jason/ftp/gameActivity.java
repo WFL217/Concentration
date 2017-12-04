@@ -110,19 +110,19 @@ public class gameActivity extends AppCompatActivity
         savedInstanceState.putSerializable("revealedCards", revealedCards);
         savedInstanceState.putSerializable("firstCard", firstCard);
         savedInstanceState.putSerializable("secondCard", secondCard);
-        savedInstanceState.putSerializable("buttons", buttons);
+        //savedInstanceState.putSerializable("buttons", buttons);
 
-        for(int i = 0; i < buttonRows.length; i++)
-        {
-            buttonRows[i].removeAllViews();
-        }
+        //for(int i = 0; i < buttonRows.length; i++)
+        //{
+        //    buttonRows[i].removeAllViews();
+        //}
 
         savedInstanceState.putInt("score", score);
         Log.d("The score is ", "" + score);
         Log.i("THE INSTANCE ", "HAS BEEN SAVED");
+
         super.onSaveInstanceState(savedInstanceState);
         Log.i("i hate this", "let it be over");
-        ((ViewGroup)((TextView) findViewById(R.id.tv1)).getParent()).removeView(findViewById(R.id.tv1));
     }
 
     @Override
@@ -131,26 +131,46 @@ public class gameActivity extends AppCompatActivity
         super.onRestoreInstanceState(savedInstanceState);
         cards = (int[][]) savedInstanceState.getSerializable("cards");
         revealedCards = (boolean[][]) savedInstanceState.getSerializable("revealedCards");
-        buttons = (View[][]) savedInstanceState.getSerializable("buttons");
+        //buttons = (View[][]) savedInstanceState.getSerializable("buttons");
 
-        ((TextView) findViewById(R.id.tv1)).setText("Score: " + 0);
-        mainTable.removeAllViews();
+        //mainTable.removeAllViews();
+
+        //for(int i = 0; i < buttons.length; i++)
+        //{
+        //    buttonRows[i] = new TableRow(context);
+        //    Log.d("Parent is ", "" + buttons[0][0].getParent());
+        //    buttonRows[i].setHorizontalGravity(Gravity.CENTER);
+
+        //    for(int j = 0; j < buttons[i].length; j++)
+        //    {
+        //        buttonRows[i].addView(buttons[i][j]);
+        //    }
+        //    mainTable.addView(buttonRows[i]);
+        //}
 
         for(int i = 0; i < buttons.length; i++)
         {
-            buttonRows[i] = new TableRow(context);
-            Log.d("Parent is ", "" + buttons[0][0].getParent());
-            buttonRows[i].setHorizontalGravity(Gravity.CENTER);
-
             for(int j = 0; j < buttons[i].length; j++)
             {
-                buttonRows[i].addView(buttons[i][j]);
+                if(revealedCards[i][j] == true)
+                {
+                    buttons[i][j].setVisibility(View.INVISIBLE);
+                }
             }
-            mainTable.addView(buttonRows[i]);
         }
 
         firstCard = (Card) savedInstanceState.getSerializable("firstCard");
+        if(firstCard != null)
+        {
+            buttons[firstCard.x][firstCard.y].setBackgroundDrawable(images.get(cards[firstCard.x][firstCard.y]));
+        }
+
         secondCard = (Card) savedInstanceState.getSerializable("secondCard");
+        if(secondCard != null)
+        {
+            buttons[secondCard.x][secondCard.y].setBackgroundDrawable(images.get(cards[secondCard.x][secondCard.y]));
+        }
+
         score = savedInstanceState.getInt("score");
         ((TextView) findViewById(R.id.tv1)).setText("Score: " + score);
         Log.d("The score is ", "" + score);
@@ -446,7 +466,6 @@ public class gameActivity extends AppCompatActivity
             if (firstCard == null)
             {
                 firstCard = new Card(button, x, y);
-                revealedCards[x][y] = true;
                 button.setBackgroundDrawable(images.get(cards[x][y]));
             }
             else
@@ -518,9 +537,11 @@ public class gameActivity extends AppCompatActivity
 
                 firstCard.button.setVisibility(View.INVISIBLE);
                 buttons[firstCard.x][firstCard.y].setVisibility(View.INVISIBLE);
+                revealedCards[firstCard.x][firstCard.y] = true;
 
                 secondCard.button.setVisibility(View.INVISIBLE);
                 buttons[secondCard.x][secondCard.y].setVisibility(View.INVISIBLE);
+                revealedCards[secondCard.x][secondCard.y] = true;
             }
             else
             {
@@ -531,10 +552,10 @@ public class gameActivity extends AppCompatActivity
                     ((TextView) findViewById(R.id.tv1)).setText("Score: " + score);
                 }
 
-                firstCard.button.setBackgroundDrawable(backImage);
+                buttons[firstCard.x][firstCard.y].setBackgroundDrawable(backImage);
                 revealedCards[firstCard.x][firstCard.y] = false;
 
-                secondCard.button.setBackgroundDrawable(backImage);
+                buttons[secondCard.x][secondCard.y].setBackgroundDrawable(backImage);
                 revealedCards[secondCard.x][secondCard.y] = false;
             }
 

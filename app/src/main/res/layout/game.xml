@@ -35,8 +35,10 @@
             android:layout_width="wrap_content"
             android:layout_height="55dp"
             android:layout_weight="1"
-            android:paddingLeft="10sp">
-        </TextView>
+            android:paddingLeft="10sp"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"></TextView>
     </TableRow>
 
     <TableRow

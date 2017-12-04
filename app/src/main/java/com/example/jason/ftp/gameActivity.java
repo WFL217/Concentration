@@ -36,10 +36,13 @@ public class gameActivity extends AppCompatActivity {
     private Context context;
     private Drawable backImage;
     private int [] [] cards;
+    private boolean[][] revealedCards;
     private List<Drawable> images;
     private Card firstCard;
-    private Card seconedCard;
+    private Card secondCard;
     private ButtonListener buttonListener;
+    private View[][] buttons;
+    private TableRow[] buttonRows;
 
     private static Object lock = new Object();
 
@@ -101,11 +104,11 @@ public class gameActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if (seconedCard != null && firstCard != null) {
-                    seconedCard.button.setBackgroundDrawable(backImage);
+                if (secondCard != null && firstCard != null) {
+                    secondCard.button.setBackgroundDrawable(backImage);
                     firstCard.button.setBackgroundDrawable(backImage);
                     firstCard = null;
-                    seconedCard = null;
+                    secondCard = null;
                 }
 
 
@@ -208,11 +211,11 @@ public class gameActivity extends AppCompatActivity {
 
                     @Override
                     public void onClick(View v) {
-                        if (seconedCard != null && firstCard != null) {
-                            seconedCard.button.setBackgroundDrawable(backImage);
+                        if (secondCard != null && firstCard != null) {
+                            secondCard.button.setBackgroundDrawable(backImage);
                             firstCard.button.setBackgroundDrawable(backImage);
                             firstCard = null;
-                            seconedCard = null;
+                            secondCard = null;
                         }
 
                     }
@@ -272,10 +275,6 @@ public class gameActivity extends AppCompatActivity {
 
         firstCard=null;
         loadCards();
-
-        turns=0;
-        ((TextView)findViewById(R.id.tv1)).setText("Score: "+score);
-
 
     }
 
@@ -381,7 +380,7 @@ public class gameActivity extends AppCompatActivity {
         public void onClick(View v) {
 
             synchronized (lock) {
-                if(firstCard!=null && seconedCard != null){
+                if(firstCard!=null && secondCard != null){
                     return;
                 }
                 int id = v.getId();
@@ -404,11 +403,7 @@ public class gameActivity extends AppCompatActivity {
                     return; //the user pressed the same card
                 }
 
-                seconedCard = new Card(button,x,y);
-
-                turns++;
-                ((TextView)findViewById(R.id.tv1)).setText("Score: "+score);
-
+                secondCard = new Card(button,x,y);
 
                 TimerTask tt = new TimerTask() {
 
@@ -492,6 +487,4 @@ public class gameActivity extends AppCompatActivity {
             }
         }
     }
-
-
 }

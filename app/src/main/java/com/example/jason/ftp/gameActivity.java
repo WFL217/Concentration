@@ -29,8 +29,8 @@ import java.util.TimerTask;
 public class gameActivity extends AppCompatActivity
 {
 
-    private int ROW_COUNT;
-    private int COL_COUNT;
+    private static int ROW_COUNT = -1;
+    private static int COL_COUNT = -1;
     private Context context;
     private Drawable backImage;
     private int[][] cards;
@@ -44,7 +44,7 @@ public class gameActivity extends AppCompatActivity
 
     private static Object lock = new Object();
 
-    private int numWords;
+    int turns;
     private TableLayout mainTable;
     private UpdateCardsHandler handler;
     private int score;
@@ -122,7 +122,6 @@ public class gameActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent i = new Intent(gameActivity.this, gameActivity.class);
-                i.putExtra("numWords", numWords);
                 startActivity(i);
                 //newGame(COL_COUNT, ROW_COUNT);
             }
@@ -238,10 +237,8 @@ public class gameActivity extends AppCompatActivity
 
         context = mainTable.getContext();
 
-        cards = new int[COL_COUNT][ROW_COUNT];
-        revealedCards = new boolean[COL_COUNT][ROW_COUNT];
-        buttons = new View[COL_COUNT][ROW_COUNT];
-        buttonRows = new TableRow[COL_COUNT];
+        cards = new int [COL_COUNT] [ROW_COUNT];
+
 
         TableRow tr = ((TableRow) findViewById(R.id.TableRow03));
         tr.removeAllViews();
@@ -313,7 +310,7 @@ public class gameActivity extends AppCompatActivity
 
             Log.i("loadCards()", "size=" + size);
 
-            ArrayList<Integer> list = new ArrayList<>();
+            ArrayList<Integer> list = new ArrayList<Integer>();
 
             for (int i = 0; i < size; i++)
             {
@@ -458,7 +455,7 @@ public class gameActivity extends AppCompatActivity
                 checkCards();
             }
         }
-
+        
         public void checkCards()
         {
             boolean gameOver = true;
@@ -490,25 +487,6 @@ public class gameActivity extends AppCompatActivity
 
                 buttons[secondCard.x][secondCard.y].setBackgroundDrawable(backImage);
                 revealedCards[secondCard.x][secondCard.y] = false;
-            }
-
-            firstCard = null;
-            secondCard = null;
-
-            for (int i = 0; i < revealedCards.length; i++)
-            {
-                for (int j = 0; j < revealedCards[i].length; j++)
-                {
-                    if (!revealedCards[i][j])
-                    {
-                        gameOver = false;
-                    }
-                }
-            }
-
-            if (gameOver)
-            {
-                // TODO: 12/3/2017 Add highscore activity
             }
         }
     }

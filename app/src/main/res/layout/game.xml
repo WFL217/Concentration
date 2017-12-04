@@ -35,8 +35,10 @@
             android:layout_width="wrap_content"
             android:layout_height="55dp"
             android:layout_weight="1"
-            android:paddingLeft="10sp">
-        </TextView>
+            android:paddingLeft="10sp"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"></TextView>
     </TableRow>
 
     <TableRow
@@ -85,9 +87,12 @@
 
         <Button
             android:id="@+id/button1"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="160dp"
             android:layout_height="match_parent"
-            android:text="Try Again" />
+            android:text="Try Again"
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </TableRow>
 
     <TableRow
@@ -98,9 +103,12 @@
 
         <Button
             android:id="@+id/button2"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="160dp"
             android:layout_height="match_parent"
             android:text="New Game"
+            android:textSize="18sp"
+            android:textStyle="bold"
             tools:text="New Game" />
     </TableRow>
 
@@ -112,9 +120,12 @@
 
         <Button
             android:id="@+id/button3"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="160dp"
             android:layout_height="match_parent"
-            android:text="End Game" />
+            android:text="End Game"
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </TableRow>
 
 

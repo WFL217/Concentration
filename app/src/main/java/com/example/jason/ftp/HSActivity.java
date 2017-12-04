@@ -23,9 +23,10 @@ public class HSActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         highScores = new TextView[]{findViewById(R.id.score1), findViewById(R.id.score2), findViewById(R.id.score3), findViewById(R.id.score4), findViewById(R.id.score5)};
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_hs);
 
-        File scores = new File(this.getFilesDir(),"highscore.txt");
+        File scores = new File("highscore.txt");
 
         try {
             if (!scores.exists()) {

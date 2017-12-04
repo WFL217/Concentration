@@ -16,28 +16,16 @@ import java.util.Scanner;
 
 public class HSActivity extends AppCompatActivity {
 
-    private TextView[] highScores = {findViewById(R.id.score1), findViewById(R.id.score2), findViewById(R.id.score3), findViewById(R.id.score4), findViewById(R.id.score5)};
+    private TextView[] highScores;
     private Scanner file;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        highScores = new TextView[]{findViewById(R.id.score1), findViewById(R.id.score2), findViewById(R.id.score3), findViewById(R.id.score4), findViewById(R.id.score5)};
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hs);
 
-        ((Button)findViewById(R.id.menuButton)).setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(HSActivity.this, Manager.class);
-                startActivity(i);
-
-            }
-
-
-        });
-
-
-        File scores = new File("highscore.txt");
+        File scores = new File(this.getFilesDir(),"highscore.txt");
 
         try {
             if (!scores.exists()) {
@@ -69,7 +57,21 @@ public class HSActivity extends AppCompatActivity {
             e.getMessage();
         }
 
-        
+
+
+        ((TextView)findViewById(R.id.score1)).setText("ABC");
+
+        ((Button)findViewById(R.id.menuButton)).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(HSActivity.this, Manager.class);
+                startActivity(i);
+
+            }
+
+
+        });
     }
 
     public boolean isHighScore(int x)

@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Concentration.iml" filepath="$PROJECT_DIR$/Concentration.iml" />
+      <module fileurl="file://D:\My Documents\Android Studio Projects\Concentration Project\Concentration.iml" filepath="D:\My Documents\Android Studio Projects\Concentration Project\Concentration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Concentration Project.iml" filepath="$PROJECT_DIR$/Concentration Project.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

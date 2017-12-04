@@ -382,7 +382,7 @@ public class gameActivity extends AppCompatActivity
 
             Log.i("loadCards()", "size=" + size);
 
-            ArrayList<Integer> list = new ArrayList<Integer>();
+            ArrayList<Integer> list = new ArrayList<>();
 
             for (int i = 0; i < size; i++)
             {
@@ -530,6 +530,8 @@ public class gameActivity extends AppCompatActivity
 
         public void checkCards()
         {
+            boolean gameOver = true;
+
             if (cards[firstCard.x][firstCard.y] == cards[secondCard.x][secondCard.y])
             {
                 score += 2;
@@ -561,6 +563,22 @@ public class gameActivity extends AppCompatActivity
 
             firstCard = null;
             secondCard = null;
+
+            for (int i = 0; i < revealedCards.length; i++)
+            {
+                for (int j = 0; j < revealedCards[i].length; j++)
+                {
+                    if (!revealedCards[i][j])
+                    {
+                        gameOver = false;
+                    }
+                }
+            }
+
+            if (gameOver)
+            {
+                // TODO: 12/3/2017 Add highscore activity
+            }
         }
     }
 }

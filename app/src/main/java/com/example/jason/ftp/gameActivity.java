@@ -54,7 +54,7 @@ public class gameActivity extends AppCompatActivity
         Intent i = new Intent(gameActivity.this, Manager.class);
         startActivity(i);
     }
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -198,7 +198,8 @@ public class gameActivity extends AppCompatActivity
             {
                 if(revealedCards[i][j] == true)
                 {
-                    buttons[i][j].setVisibility(View.INVISIBLE);
+                    buttons[i][j].setClickable(false);
+                    buttons[i][j].setBackgroundDrawable(images.get((cards[i][j])));
                 }
             }
         }
@@ -270,7 +271,7 @@ public class gameActivity extends AppCompatActivity
 
         firstCard = null;
         loadCards();
-        
+
         ((TextView) findViewById(R.id.tv1)).setText("Score: " + score);
 
 

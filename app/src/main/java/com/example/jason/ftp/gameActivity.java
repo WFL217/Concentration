@@ -120,11 +120,12 @@ public class gameActivity extends AppCompatActivity {
         ((Button)findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v) {
-                Intent i = new Intent(gameActivity.this, gameActivity.class);
-                i.putExtra("numWords", numWords);
-                startActivity(i);
-                newGame(getxDim(),getyDim());
+            public void onClick(View v)
+            {
+                //Intent i = new Intent(gameActivity.this, gameActivity.class);
+                //i.putExtra("numWords", numWords);
+                //startActivity(i);
+                newGame(COL_COUNT, ROW_COUNT);
             }
 
 
@@ -141,7 +142,6 @@ public class gameActivity extends AppCompatActivity {
 
 
         });
-
     }
 
     public void newGame(int c, int r) {
@@ -447,12 +447,12 @@ public class gameActivity extends AppCompatActivity {
                 score += 2;
                 ((TextView) findViewById(R.id.tv1)).setText("Score: " + score);
 
-                firstCard.button.setVisibility(View.INVISIBLE);
-                buttons[firstCard.x][firstCard.y].setVisibility(View.INVISIBLE);
+                //firstCard.button.setVisibility(View.INVISIBLE);
+                buttons[firstCard.x][firstCard.y].setClickable(false);
                 revealedCards[firstCard.x][firstCard.y] = true;
 
-                secondCard.button.setVisibility(View.INVISIBLE);
-                buttons[secondCard.x][secondCard.y].setVisibility(View.INVISIBLE);
+                //secondCard.button.setVisibility(View.INVISIBLE);
+                buttons[secondCard.x][secondCard.y].setClickable(false);
                 revealedCards[secondCard.x][secondCard.y] = true;
             }
             else

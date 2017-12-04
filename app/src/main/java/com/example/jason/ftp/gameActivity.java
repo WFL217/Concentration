@@ -3,6 +3,7 @@ package com.example.jason.ftp;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -50,10 +51,12 @@ public class gameActivity extends AppCompatActivity {
     private int xDim;
     private int yDim;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game);
+
+
         handler = new UpdateCardsHandler();
         loadImages();
         backImage =  getResources().getDrawable(R.drawable.icon);

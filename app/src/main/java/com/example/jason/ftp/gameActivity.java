@@ -97,7 +97,7 @@ public class gameActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(gameActivity.this, Manager.class);
+                Intent i = new Intent(gameActivity.this, scoreScreenActivity.class);
                 startActivity(i);
 
             }

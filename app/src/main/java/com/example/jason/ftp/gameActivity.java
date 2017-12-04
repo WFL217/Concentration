@@ -47,6 +47,8 @@ public class gameActivity extends AppCompatActivity {
     private UpdateCardsHandler handler;
     private int score;
     private String[] arr;
+    private int xDim;
+    private int yDim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,15 +57,21 @@ public class gameActivity extends AppCompatActivity {
         handler = new UpdateCardsHandler();
         loadImages();
         backImage =  getResources().getDrawable(R.drawable.icon);
-
-        newGame(4,4);
+        setxDim(2);
+        setyDim(2);
+        newGame(getxDim(),getyDim());
 
         ((Button)findViewById(R.id.button1)).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                //Intent i = new Intent(HSActivity.this, Manager.class);
-                //startActivity(i);
+                if (seconedCard != null && firstCard != null) {
+                    seconedCard.button.setBackgroundDrawable(backImage);
+                    firstCard.button.setBackgroundDrawable(backImage);
+                    firstCard = null;
+                    seconedCard = null;
+                }
+
 
             }
 
@@ -76,7 +84,7 @@ public class gameActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(gameActivity.this, gameActivity.class);
                 startActivity(i);
-                newGame(4,4);
+                newGame(getxDim(),getyDim());
             }
 
 
@@ -132,7 +140,7 @@ public class gameActivity extends AppCompatActivity {
                     selectedText.setTextColor(Color.BLUE);
                 }
 
-                int x,y;
+                final int x,y;
 
                 switch (pos) {
                     case 1:
@@ -156,14 +164,19 @@ public class gameActivity extends AppCompatActivity {
                     default:
                         return;
                 }
-
+                setxDim(x);
+                setyDim(y);
                 newGame(x,y);
                 ((Button)findViewById(R.id.button1)).setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
-                        //Intent i = new Intent(HSActivity.this, Manager.class);
-                        //startActivity(i);
+                        if (seconedCard != null && firstCard != null) {
+                            seconedCard.button.setBackgroundDrawable(backImage);
+                            firstCard.button.setBackgroundDrawable(backImage);
+                            firstCard = null;
+                            seconedCard = null;
+                        }
 
                     }
 
@@ -176,7 +189,6 @@ public class gameActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent i = new Intent(gameActivity.this, gameActivity.class);
                         startActivity(i);
-                        newGame(4,4);
                     }
 
 
@@ -226,6 +238,22 @@ public class gameActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.tv1)).setText("Score: "+score);
 
 
+    }
+
+    private void setxDim(int x){
+        xDim = x;
+    }
+
+    private void setyDim(int y){
+        yDim = y;
+    }
+
+    private int getxDim(){
+        return xDim;
+    }
+
+    private int getyDim(){
+        return yDim;
     }
 
     private void loadImages() {
@@ -381,18 +409,18 @@ public class gameActivity extends AppCompatActivity {
                     score = score + 2;
                     firstCard.button.setVisibility(View.INVISIBLE);
                     seconedCard.button.setVisibility(View.INVISIBLE);
+                    firstCard = null;
+                    seconedCard = null;
 
                 } else {
                     score--;
-                    seconedCard.button.setBackgroundDrawable(backImage);
-                    firstCard.button.setBackgroundDrawable(backImage);
 
                 }
 
-                firstCard = null;
-                seconedCard = null;
+
             }
         }
     }
+
 
 }

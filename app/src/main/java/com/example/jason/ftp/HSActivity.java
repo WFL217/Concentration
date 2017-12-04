@@ -16,15 +16,13 @@ import java.util.Scanner;
 
 public class HSActivity extends AppCompatActivity {
 
-    private TextView[] highScores = {findViewById(R.id.score1), findViewById(R.id.score1), findViewById(R.id.score1), findViewById(R.id.score1), findViewById(R.id.score1)};
+    private TextView[] highScores = {findViewById(R.id.score1), findViewById(R.id.score2), findViewById(R.id.score3), findViewById(R.id.score4), findViewById(R.id.score5)};
     private Scanner file;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hs);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         ((Button)findViewById(R.id.menuButton)).setOnClickListener(new View.OnClickListener() {
 
